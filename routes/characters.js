@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-router.get("/characters", async (req, res) => {
+router.get("/", async (req, res) => {
 	try {
 		const { limit, skip, name } = req.query;
 

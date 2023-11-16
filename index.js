@@ -12,10 +12,6 @@ app.use(characterRoutes);
 app.use(comicsRoutes);
 app.use(comicRoute);
 
-app.get("/", (req, res) => {
-	res.json({ message: "Welcome on my project" });
-});
-
 app.all("*", (req, res) => {
 	res.status(404).json({ message: "page not found" });
 });
