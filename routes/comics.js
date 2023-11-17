@@ -5,11 +5,11 @@ const axios = require("axios");
 
 router.get("/comics", async (req, res) => {
 	try {
-		const { limit, skip, title } = req.query; //destructure les query
+		const { limit, skip, title, sort } = req.query; //destructure les query
 
-		let url = `https://lereacteur-marvel-api.herokuapp.com/comics?&apiKey=${process.env.MARVEL_API_KEY}`; // met en variable l'url pour pouvoir le réutiliser dans mes conditions.
+		let url = `https://lereacteur-marvel-api.herokuapp.com/comics?title=${title}&apiKey=${process.env.MARVEL_API_KEY}`; // met en variable l'url pour pouvoir le réutiliser dans mes conditions.
 
-		//si le query s'il existe et s'il compris entre 1 et 100
+		//si le query existe et s'il est compris entre 1 et 100
 		if (limit && (limit > 0 || limit <= 100)) {
 			url += `&limit=${limit}`; // j'affiche l'url avec ma query limit et sa valeur
 		}
@@ -23,6 +23,7 @@ router.get("/comics", async (req, res) => {
 			url += `&titlte=${title}`;
 		}
 
+		console.log();
 		const response = await axios.get(url);
 
 		console.log(url, response.data.results.length);
